@@ -1,0 +1,12 @@
+#pages-medium
+  .page
+    .header.editable{ id: 'header' }
+      = @page.header.html_safe
+    .body.editable{ id: 'body' }
+      = @page.body.html_safe
+    .footer
+      Brought to you from Russia (with love)
+
+.actions
+  = link_to 'Save document', medium_document_path(@document), id: 'done'
+  = link_to 'Cancel', medium_documents_path

@@ -1,0 +1,26 @@
+.actions
+  %a{ href: '#', id: 'new-page' }
+    + Add new page
+  = link_to 'Cancel', documents_path
+
+#pages
+  - @document.pages.each_with_index do |page, i|
+    .page
+      .header{ id: "header-#{ i + 1 }", data: { mercury: 'full' } }
+        = page.header.html_safe
+      .body{ id: "body-#{ i + 1 }", data: { mercury: 'full' } }
+        = page.body.html_safe
+      .footer
+        Brought to you from Russia (with love)
+
+
+:javascript
+  $(document).ready(function(){
+    $('a#new-page').click(function(e){
+      e.preventDefault();
+      number = $('.page').length + 1
+      newPage = JST['templates/page']({ number: number });
+      $('#pages').append(newPage);
+      Mercury.trigger('reinitialize');
+    });
+  });

@@ -1,0 +1,15 @@
+%h1 Documents#index
+%table
+  %thead
+    %tr
+      %th Document
+      %th
+  %tbody
+    - @documents.each do |document|
+      %tr
+        %td= document.id
+        %td= link_to 'Edit', medium_document_path(document)
+
+.actions
+  = link_to 'New document', new_medium_document_path
+  = link_to 'Return to index', root_path
