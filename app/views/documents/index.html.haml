@@ -10,7 +10,8 @@
       %tr
         %td= document.id
         %td= document.pages.size
-        %td= link_to 'Edit', "/editor#{ document_path(document) }"
+        %td= link_to 'mercury', "/editor#{ document_path(document) }"
+        %td= link_to 'medium', medium_document_path(document)
 
 .actions
   = link_to 'New document', new_document_path

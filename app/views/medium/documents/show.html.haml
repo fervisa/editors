@@ -1,9 +1,15 @@
+:css
+  table, th, td{
+    border: 1px solid black;
+  }
+
 #pages-medium
   .page
     .header.editable{ id: 'header' }
+      - @page.header ||= ''
       = @page.header.html_safe
     .body.editable{ id: 'body' }
-      = @page.body.html_safe
+      = @page.body.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').html_safe
     .footer
       Brought to you from Russia (with love)
 

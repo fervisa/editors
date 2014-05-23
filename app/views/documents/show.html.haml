@@ -1,3 +1,8 @@
+:css
+  table, th, td{
+    border: 1px solid black;
+  }
+
 .actions
   %a{ href: '#', id: 'new-page' }
     + Add new page
@@ -7,9 +12,10 @@
   - @document.pages.each_with_index do |page, i|
     .page
       .header{ id: "header-#{ i + 1 }", data: { mercury: 'full' } }
+        - page.header ||= ''
         = page.header.html_safe
       .body{ id: "body-#{ i + 1 }", data: { mercury: 'full' } }
-        = page.body.html_safe
+        = page.body.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '').html_safe
       .footer
         Brought to you from Russia (with love)
 
